@@ -60,11 +60,11 @@ public class CooladataTester extends ActionBarActivity implements View.OnClickLi
     public void onClick(View v) {
 
         if(v== event1UserPropertyButton){
-            trackEvent("Event1", "Event1_user");
+            trackEventU("Event3");
         }else if(v== event2UserPropertyButton){
             trackEvent("Event2", "Event2_user");
         }else if(v== event1SessionPropertyButton){
-            trackEvent("Event1", "Event1_user", "Event1_session");
+            trackEventS("Event4");
         } else if(v== event2SessionPropertyButton){
             trackEvent("Event2", "Event2_user", "Event2_session");
         } else if(v== event1EventPropertyButton){
@@ -73,6 +73,21 @@ public class CooladataTester extends ActionBarActivity implements View.OnClickLi
             trackEvent("Event2");
         }
     }
+
+    private void trackEventU(String event) {
+        Log.i("Tracking:", "EventU: "+event);
+        CoolaDataTracker.trackEvent(event, getUserSomeParams());
+
+        Toast.makeText(this, "EventU: " + event+ " was tracked",Toast.LENGTH_SHORT).show();
+    }
+
+    private void trackEventS(String event){
+        Log.i("Tracking:", "EventS: "+event);
+        CoolaDataTracker.trackEvent(event, getSessionSomeParams());
+
+        Toast.makeText(this, "EventS: " + event+ " was tracked",Toast.LENGTH_SHORT).show();
+    }
+
 
 
     private void trackEvent(String event){
@@ -100,6 +115,20 @@ public class CooladataTester extends ActionBarActivity implements View.OnClickLi
         Map<String, Object> properties = new HashMap<String, Object>();
         properties.put("param1", "1");
         properties.put("param2", "2");
+        return properties;
+    }
+
+    private Map<String,Object> getSessionSomeParams() {
+        Map<String, Object> properties = new HashMap<String, Object>();
+        properties.put("session_property", "bla");
+        properties.put("session_property2", "2");
+        return properties;
+    }
+
+    private Map<String,Object> getUserSomeParams() {
+        Map<String, Object> properties = new HashMap<String, Object>();
+        properties.put("user_property", "blabla");
+        properties.put("user_property2", "2");
         return properties;
     }
 }
