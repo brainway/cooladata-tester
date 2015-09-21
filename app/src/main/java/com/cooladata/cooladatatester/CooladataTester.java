@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.cooladata.android.CoolaDataTracker;
 
@@ -77,16 +78,22 @@ public class CooladataTester extends ActionBarActivity implements View.OnClickLi
     private void trackEvent(String event){
         Log.i("Tracking:", "Event: " + event);
         CoolaDataTracker.trackEvent(event, getSomeParams());
+
+        Toast.makeText(this, "Event: " + event+ " was tracked",Toast.LENGTH_SHORT).show();
     }
 
     private void trackEvent(String event, String user){
         Log.i("Tracking:", "Event: "+event+", User: "+user);
         CoolaDataTracker.trackEvent(event,user, getSomeParams());
+
+        Toast.makeText(this, "Event: "+event+", User: "+user + " was tracked",Toast.LENGTH_SHORT).show();
     }
 
     private void trackEvent(String event, String user, String session){
         Log.i("Tracking:", "Event: "+event+", User: "+user+", Session: "+session);
         CoolaDataTracker.trackEvent(event,user,session, getSomeParams());
+
+        Toast.makeText(this, "Event: "+event+", User: "+user+", Session: "+session + " was tracked",Toast.LENGTH_SHORT).show();
     }
 
     private Map<String, Object> getSomeParams() {
