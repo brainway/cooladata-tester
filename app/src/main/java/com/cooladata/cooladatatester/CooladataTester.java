@@ -120,15 +120,15 @@ public class CooladataTester extends ActionBarActivity implements View.OnClickLi
 
     private Map<String,Object> getSessionSomeParams() {
         Map<String, Object> properties = new HashMap<String, Object>();
-        properties.put("session_property", "bla");
-        properties.put("session_property2", "2");
+        properties.put("{s}session_property23", "bla");
+        properties.put("{s}session_property34", "2");
         return properties;
     }
 
     private Map<String,Object> getUserSomeParams() {
         Map<String, Object> properties = new HashMap<String, Object>();
-        properties.put("user_property", "blabla");
-        properties.put("user_property2", "2");
+        properties.put("{u}user_property34", "blabla");
+        properties.put("{u}user_property23", "2");
         return properties;
     }
 }
