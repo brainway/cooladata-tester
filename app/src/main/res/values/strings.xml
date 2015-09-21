@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">Cooladata Tester</string>
+
+
+    <string name="action_settings">Settings</string>
+    <string name="event1_user_property">Event 1 - User property</string >
+    <string name="event1_session_property">Event 1 - Session property</string >
+    <string name="event1_event_property">Event 1 - Event property</string >
+    <string name="event2_user_property">Event 2 - User property</string >
+    <string name="event2_session_property">Event 2 - Session property</string >
+    <string name="event2_event_property">Event 2 - Event property</string >
+    <color name="user_property_color">#FF0000</color>
+    <color name="session_property_color">#0000FF</color>
+    <color name="event_property_color">#00FF00</color>
+
+</resources>
