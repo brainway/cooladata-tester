@@ -9,6 +9,7 @@
     <string name="event2_user_property">Event 2 - User property</string >
     <string name="event2_session_property">Event 2 - Session property</string >
     <string name="event2_event_property">Event 2 - Event property</string >
+    <string name="custom_event_handler_default">Custom Event handler text</string >
     <color name="user_property_color">#FF0000</color>
     <color name="session_property_color">#0000FF</color>
     <color name="event_property_color">#00FF00</color>

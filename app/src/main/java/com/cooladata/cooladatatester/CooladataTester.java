@@ -1,19 +1,25 @@
 package com.cooladata.cooladatatester;
 
+import android.content.ClipData;
+import android.content.ClipboardManager;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.cooladata.android.CoolaDataTracker;
+import com.cooladata.cooladatatester.custom.TextRedirectCustomEventHandler;
+import com.cooladata.cooladatatester.custom.TextRedirectCustomEventListener;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
 
-public class CooladataTester extends ActionBarActivity implements View.OnClickListener {
+public class CooladataTester extends ActionBarActivity implements View.OnClickListener, TextRedirectCustomEventListener {
 
 
     private Button event1UserPropertyButton;
@@ -22,6 +28,7 @@ public class CooladataTester extends ActionBarActivity implements View.OnClickLi
     private Button event2SessionPropertyButton;
     private Button event1EventPropertyButton;
     private Button event2EventPropertyButton;
+    private TextView customEventHandlerOutput;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +55,8 @@ public class CooladataTester extends ActionBarActivity implements View.OnClickLi
         event1EventPropertyButton.setOnClickListener(this);
         event2EventPropertyButton.setOnClickListener(this);
 
+        customEventHandlerOutput = (TextView) findViewById(R.id.customEvenHandlerResultView);
+        TextRedirectCustomEventHandler.setLitener(this);
     }
 
     @Override
@@ -71,6 +80,12 @@ public class CooladataTester extends ActionBarActivity implements View.OnClickLi
             trackEvent("Event1");
         } else if(v== event2EventPropertyButton){
             trackEvent("Event2");
+        } else if (v== customEventHandlerOutput){
+            ClipData clip = ClipData.newPlainText("handler data", customEventHandlerOutput.getText());
+            ClipboardManager clipboard = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
+            clipboard.setPrimaryClip(clip);
+
+            Toast.makeText(this, "Log was copied to clipboard", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -130,5 +145,17 @@ public class CooladataTester extends ActionBarActivity implements View.OnClickLi
         properties.put("{u}user_property34", "blabla");
         properties.put("{u}user_property23", "2");
         return properties;
+    }
+
+    @Override
+    public void redirectEvent(final String eventTitle, final String context, final String event) {
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                customEventHandlerOutput.append( eventTitle+" : "+new Date().toString()+"\n---\n");
+                customEventHandlerOutput.append("Context: "+context+"\n ---\n");
+                customEventHandlerOutput.append( "Event : "+event + "\n -------------------------\n");
+            }
+        });
     }
 }
