@@ -13,7 +13,7 @@
         android:name="com.cooladata.cooladatatester.CoolaTestApp"
         android:theme="@style/AppTheme" >
         <activity
-            android:name=".CooladataTester"
+            android:name="com.cooladata.cooladatatester.CooladataTester"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
